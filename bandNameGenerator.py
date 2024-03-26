@@ -1,22 +1,21 @@
-#1. Create a greeting for your program.
+#1. Erstellen Sie eine Begrüßung für Ihr Programm.
 print(
-    "Welcome to Vugar's first app, which generates a band name, and also unfortunately looks stupid =) "
+     "Willkommen bei Vugars erster App, die einen Bandnamen generiert, und leider auch blöd aussieht =)"
 )
-#2. Ask the user for the city that they grew up in.
-user_name = input("What is your name dear user? ")
-print("Nice to meet you dear " + user_name)
-users_city = input(
-    "If it is not secret could you tell me what is the name of the city you grew up in? "
+#2. Fragen Sie den Benutzer nach der Stadt, in der er aufgewachsen ist.
+user_name = input("Wie ist Ihr Name, lieber Benutzer? ")
+print("Freut mich, Sie kennenzulernen, Schatz " + user_name)
+user_city = input(
+     "Wenn es kein Geheimnis ist, könnten Sie mir dann sagen, wie die Stadt heißt, in der Sie aufgewachsen sind? "
 )
-#3. Ask the user for the name of a pet.
-users_pet = input(
-    "If you have or had pet What is or was it is name ? (if you never had a pet what would you name it if you had it ?) "
+#3. Fragen Sie den Benutzer nach dem Namen eines Haustieres.
+users_pet_name = input(
+     "Wenn Sie ein Haustier haben oder hatten, wie heißt es? (Wenn Sie nie ein Haustier gehabt hätten, wie würden Sie es nennen, wenn Sie es hätten?) "
 )
 
-#4. Combine the name of their city and pet and show them their band name.
-prefered_band_name = users_city + users_pet
-prefered_second_band_name = users_city + user_name
-#5. Make sure the input cursor shows on a new line:
-print("My first suggestion for your band name is " + prefered_band_name)
-print("My second suggestion for your band name is " +
-      prefered_second_band_name)
+#4. Kombinieren Sie den Namen ihrer Stadt und ihres Haustiers und zeigen Sie ihnen ihren Bandnamen.
+users_first_band_name_suggestion = user_city + users_pet_name
+users_second_band_name_suggestion = user_city + user_name
+#5. Stellen Sie sicher, dass der Eingabecursor in einer neuen Zeile angezeigt wird:
+print("Mein erster Vorschlag für deinen Bandnamen ist " + users_first_band_name_suggestion)
+print("Mein zweiter Vorschlag für deinen Bandnamen ist " + users_second_band_name_suggestion)
