@@ -3,8 +3,8 @@ print(
      "Willkommen bei Vugars erster App, die einen Bandnamen generiert, und leider auch blöd aussieht =)"
 )
 #2. Fragen Sie den Benutzer nach der Stadt, in der er aufgewachsen ist.
-user_name = input("Wie ist Ihr Name, lieber Benutzer? ")
-print("Freut mich, Sie kennenzulernen, Schatz " + user_name)
+users_name = input("Wie ist Ihr Name, lieber Benutzer? ")
+print("Freut mich, Sie kennenzulernen, Schatz " + users_name)
 user_city = input(
      "Wenn es kein Geheimnis ist, könnten Sie mir dann sagen, wie die Stadt heißt, in der Sie aufgewachsen sind? "
 )
@@ -14,8 +14,8 @@ users_pet_name = input(
 )
 
 #4. Kombinieren Sie den Namen ihrer Stadt und ihres Haustiers und zeigen Sie ihnen ihren Bandnamen.
-users_first_band_name_suggestion = user_city + users_pet_name
-users_second_band_name_suggestion = user_city + user_name
+users_first_band_name_suggestion = user_city +" "+ users_pet_name
+users_second_band_name_suggestion = user_city +" "+ users_name
 #5. Stellen Sie sicher, dass der Eingabecursor in einer neuen Zeile angezeigt wird:
 print("Mein erster Vorschlag für deinen Bandnamen ist " + users_first_band_name_suggestion)
 print("Mein zweiter Vorschlag für deinen Bandnamen ist " + users_second_band_name_suggestion)
