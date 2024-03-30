@@ -34,8 +34,13 @@ game_options = [rock, paper, scissors]
 # users_points = 0
 # computers_points = 0
 
-user_choice = int(input(" What would you like to choose to play the game. 0 Rock, 1 Scissors, 2 Paper? "))
-computer = random.randint(0, 2)
+user_choice = input(" What would you like to choose to play the game. 0 Rock, 1 Scissors, 2 Paper ?(and other numbers or words are random choice ")
+if user_choice.isdigit() and int(user_choice) in range(len(game_options)):
+    user_choice = int(user_choice)
+else:
+    user_choice = random.randint(0, len(game_options) - 1)
+    
+computer = random.randint(0, len(game_options) - 1)
 computer_move = game_options[computer]
 user_move = game_options[user_choice]
 
@@ -43,14 +48,18 @@ if user_move == computer_move:
     print(f"\nYou chose: {user_move}")
     print(f"Computer chose: {computer_move}")
     print("It's a tie!")
-elif (user_move == "rock" and computer_move == "scissors") or (user_move == "paper" and computer_move == "rock") or (user_move == "scissors" and computer_move == "paper"):
+elif (user_move == rock and computer_move == scissors) or (user_move == paper and computer_move == rock) or (user_move == scissors and computer_move == paper):
     print(f"\nYou chose: {user_move}")
     print(f"Computer chose: {computer_move}")
-    print("You won!")
+    print("You win!")
+elif (user_move == scissors and computer_move == rock) or (user_move == rock and computer_move == paper) or (user_move == paper and computer_move == scissors):
+    print(f"\nYou chose: {user_move}")
+    print(f"Computer chose: {computer_move}")
+    print("Computer win!")
+elif (user_choice != scissors) or (user_choice != paper) or (user_choice != rock):
+    print("\n You typed invalid number, please try again")
 else:
-    print(f"\nYou chose: {user_move}")
-    print(f"Computer chose: {computer_move}")
-    print("Computer won!")
+    print("\n You typed invalid number, please try again")
 # while True:
 #     computer = random.randint(0, 2)
 #     user_choice = int(input(" What would you like to choose to start game. 0 Rock, 1 Scissors, 2 Paper? "))
