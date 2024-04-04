@@ -1,6 +1,7 @@
 import random
 import hangman_art
 import hangman_words
+
 print(hangman_art.logo)
 print("\n        Welcome to hangman game! \n")
 chosen_level = input("Please choose a level like 'easy', 'medium', 'hard' or random names) ")
@@ -18,7 +19,6 @@ random_word_len = len(random_word)
 display = ["_"] * random_word_len
 lives = 6
 print(display)
-print(random_word)
 
 while True:
 # while not end_of_game:
