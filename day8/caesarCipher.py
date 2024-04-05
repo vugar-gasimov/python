@@ -1,3 +1,6 @@
+import caesarCipherArt
+print(caesarCipherArt.logo)
+print("\n Welcome to caesar cipher which is a way of coding messages which have been used by Caesar \n")
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
