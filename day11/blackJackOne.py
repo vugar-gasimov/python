@@ -29,11 +29,9 @@ def play_blackjack():
     for _ in range(2):
         random_number = random.choice(all_cards)
         cards.append(random_number)
-        all_cards.remove(random_number)
     for _ in range(2):
         random_number = random.choice(all_cards)
         computers_cards.append(random_number)
-        all_cards.remove(random_number)
      
     current_score = sum(cards)
     computers_current_score = sum(computers_cards)
@@ -47,7 +45,6 @@ def play_blackjack():
         if to_get_card == "y":
             random_number = random.choice(all_cards)
             cards.append(random_number)
-            all_cards.remove(random_number)
             current_score = sum(cards)
         else:
             break
@@ -55,7 +52,6 @@ def play_blackjack():
     while computers_current_score < 17:
         random_number = random.choice(all_cards)
         computers_cards.append(random_number)
-        all_cards.remove(random_number)
         computers_current_score = sum(computers_cards)
         
     print(f"  Your final hand: {cards}, final score: {current_score} ")
