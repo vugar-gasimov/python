@@ -36,12 +36,38 @@
 # total_words = pages * word_per_page
 # print(total_words)
 
-# #Use a Debugger
-def mutate(a_list):
-  b_list = []
-  for item in a_list:
-    new_item = item * 2
-    b_list.append(new_item)
-  print(b_list)
+# # #Use a Debugger
+# def mutate(a_list):
+#   b_list = []
+#   for item in a_list:
+#     new_item = item * 2
+#     b_list.append(new_item)
+#   print(b_list)
 
-mutate([1,2,3,5,8,13])
+# mutate([1,2,3,5,8,13])
+
+# Which year do you want to check?
+# year = int(input("Enter a year to check if it is leap year or not. "))
+
+# if year % 4 == 0:
+#   if year % 100 == 0:
+#     if year % 400 == 0:
+#       print("Leap year.")
+#     else:
+#       print("Not leap year.")
+#   else:
+#     print("Leap year.")
+# else:
+#   print("Not leap year.")
+
+target = int(input())
+for number in range(1, target + 1):
+  if number % 3 == 0 and number % 5 == 0:
+    print("FizzBuzz")
+  elif number % 3 == 0:
+    print("Fizz")
+  elif number % 5 == 0:
+    print("Buzz")
+  else:
+    print(number)
+  
