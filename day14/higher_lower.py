@@ -1,25 +1,38 @@
 import art
 import random
-import game_data 
+from game_data import data
+
+def output_info(celebrity):
+    """Returns a tuple containing the celebrity's name, description, country, and follower count."""
+    name = celebrity["name"]
+    description = celebrity["description"]
+    country = celebrity["country"]
+    follower = celebrity["follower_count"]
+    return name, description, country, follower
 
 answer = True
 
-def random_star():
-    return random.choice(game_data.data)
-
-
 print(art.logo)
+random_star_a = random.choice(data)
+random_star_b = random.choice(data)
+current_score = 0 
+
+
+
+a = output_info(random_star_a)
+b = output_info(random_star_b)
 while answer:
-    random_star_a = random_star()
-    random_star_b = random_star()
-    current_score = 0 
+    is_same_celebrity = random_star_a == random_star_b  
+    while is_same_celebrity:  
+        random_star_b = random.choice(data)
+        is_same_celebrity = random_star_a == random_star_b
     
-    print(f"Compare A: {random_star_a['name']}, is a {random_star_a['description']}, from {random_star_a['country']}.")
+    print(f"Compare A: {a[0]}, is a {a[1]}, from {a[2]}.")
     print(art.vs)
-    print(f"Compare B: {random_star_b['name']}, is a {random_star_b['description']}, from {random_star_b['country']}.")
+    print(f"Compare B: {b[0]}, is a {b[1]}, from {b[2]}.")
     
     user_answer = input("Who has more followers? (A/B): ").lower()
-    if random_star_a['follower_count'] > random_star_b['follower_count']:
+    if a[3] > b[3]:
         a_is_higher = True
         b_is_higher = False
     else:
@@ -28,10 +41,14 @@ while answer:
         
     if user_answer == "a" and a_is_higher == True:
         current_score += 1
+        random_star_a = random_star_a
+        random_star_b = random.choice(data)
         print(art.logo)
         print(f"You're right! Your current score is: {current_score}")
     elif user_answer == "b" and b_is_higher == True:
         current_score += 1
+        random_star_a = random_star_b
+        random_star_b = random.choice(data)
         print(art.logo)
         print(f"You're right! Your current score is: {current_score}")
     else:
