@@ -1,5 +1,9 @@
 from resources import resources
 from art import coffee_machine_img
+# from menu import MENU
+
+# def coffee(name):
+#     MENU[name]
 
 def coffee_machine():
     print("Hello, Welcome to our coffee machine. ☕")
@@ -10,7 +14,10 @@ def coffee_machine():
             work = False
             
         if order == "report":
-            print(resources)
+            print(f"   Water: {resources['water']} 🫗")
+            print(f"   Milk: {resources['milk']} 🥛")
+            print(f"   Coffee: {resources['coffee']} 🫘")
+            print(f"   Money: {resources['money']} 💵 ")
             coffee_machine()
             
         if order == "water":
@@ -51,13 +58,13 @@ def coffee_machine():
                     print("Here is your espresso. Enjoy!")
                     resources["coffee"] -= 18
                     resources["water"] -= 50
-                    resources["Money"] += 1.5
+                    resources["money"] += 1.5
                     coffee_machine()
                 elif total_pay == 1.5:
                     print("Here is your espresso. Enjoy!")
                     resources["coffee"] -= 18
                     resources["water"] -= 50
-                    resources["Money"] += 1.5
+                    resources["money"] += 1.5
                     coffee_machine()
                     
         if order == "latte":
@@ -87,14 +94,14 @@ def coffee_machine():
                     resources["milk"] -= 150
                     resources["coffee"] -= 24
                     resources["water"] -= 200
-                    resources["Money"] += 2.5
+                    resources["money"] += 2.5
                     coffee_machine()
                 elif total_pay == 2.5:
                     print("Here is your latte. Enjoy!")
                     resources["milk"] -= 150
                     resources["coffee"] -= 24
                     resources["water"] -= 200
-                    resources["Money"] += 2.5
+                    resources["money"] += 2.5
                     coffee_machine()
         if order == "cappuccino":
             if resources["water"] < 250:
@@ -123,14 +130,14 @@ def coffee_machine():
                     resources["milk"] -= 100
                     resources["coffee"] -= 24
                     resources["water"] -= 250
-                    resources["Money"] += 3.0
+                    resources["money"] += 3.0
                     coffee_machine()
                 elif total_pay == 3.0:
                     print("Here is your cappuccino. Enjoy!")
                     resources["milk"] -= 100
                     resources["coffee"] -= 24
                     resources["water"] -= 250
-                    resources["Money"] += 3.0
+                    resources["money"] += 3.0
                     coffee_machine()
 print(coffee_machine_img)
 condition = input("Coffee Machine (on/off): ")
