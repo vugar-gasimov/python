@@ -11,6 +11,7 @@ def coffee_machine():
     order = input("What would you like? (espresso/latte/cappuccino): ") 
     while work:
         if order == "off":
+            print("Coffee machine turned off")
             work = False
             
         if order == "report":

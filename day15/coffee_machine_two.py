@@ -50,7 +50,8 @@ while work:
     order = input("What would you like? (espresso/latte/cappuccino): ") 
     
     if order == "off":
-            work = False
+        print("Coffee machine turned off")
+        work = False
     elif order == "report":
         print(f"   Water: {resources['water']}ml 🫗")
         print(f"   Milk: {resources['milk']}ml 🥛")
