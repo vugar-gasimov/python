@@ -1,6 +1,6 @@
 from resources import resources
 # from art import coffee_machine_img
-from menu import MENU
+from day16.menu import MENU
 
 
 profit = 0
