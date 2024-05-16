@@ -1,4 +1,6 @@
-from turtle import Screen, Turtle
+from turtle import Screen
+from snake_1 import Snake
+from food_1 import Food
 import time
 # snake_length = 2
 # body_x=-20
@@ -9,17 +11,25 @@ screen.bgcolor("darkBlue")
 screen.title("Snake Game")
 screen.tracer(0)
 
-starting_positions = [(0,0), (-20, 0), (-40, 0)]
+# starting_positions = [(0,0), (-20, 0), (-40, 0)]
 
-snakes=[]
+# snakes=[]
+snake = Snake()
+food = Food()
 
-for position in starting_positions:
-    new_snake = Turtle(shape="circle")
-    new_snake.speed("slow")
-    new_snake.color("LightGreen")
-    new_snake.penup()
-    new_snake.goto(position)
-    snakes.append(new_snake)
+
+screen.listen()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.right, "Right")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.left," Left")
+# for position in starting_positions:
+#     new_snake = Turtle(shape="circle")
+#     new_snake.speed("slow")
+#     new_snake.color("LightGreen")
+#     new_snake.penup()
+#     new_snake.goto(position)
+#     snakes.append(new_snake)
 
 
 game_is_on = True
@@ -27,13 +37,21 @@ game_is_on = True
 while game_is_on:
     screen.update()
     time.sleep(0.1)
+    
+    snake.move()
+    
+    #Detect collision with food.
+    if snake.head.distance(food) < 15:
+        food.refresh()
+    
+    
     # for snake_num in range(start=2, stop=0, step=-1):
-    for snake_num in range(len(snakes) - 1, 0, -1):
-        new_x = snakes[snake_num -1].xcor()
-        new_y = snakes[snake_num -1].ycor()
-        snakes[snake_num].goto(x=new_x, y=new_y)
-    snakes[0].forward(20)
-    snakes[0].left(20)
+    # for snake_num in range(len(snakes) - 1, 0, -1):
+    #     new_x = snakes[snake_num -1].xcor()
+    #     new_y = snakes[snake_num -1].ycor()
+    #     snakes[snake_num].goto(x=new_x, y=new_y)
+    # snakes[0].forward(20)
+    # snakes[0].left(20)
     # for snake in snakes:
     #     snake.forward(20)
 # snake_1 = Turtle(shape="circle")
