@@ -1,6 +1,7 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 game_is_on = True
@@ -18,6 +19,8 @@ l_paddle = Paddle((-350, 0))
 
 ball = Ball()
 
+l_scoreboard = Scoreboard((-100, 270), "Left")
+r_scoreboard = Scoreboard((100, 270), "Right")
 # paddle = Turtle("square")
 # # paddle.hideturtle()
 # paddle.color("white")
@@ -46,7 +49,7 @@ screen.onkey(l_paddle.go_down, "s")
 while game_is_on:
     screen.update()
     ball.move()
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     
     #Detect collision with wall.
     if ball.ycor() > 280 or ball.ycor() < -280:
@@ -67,11 +70,19 @@ while game_is_on:
         # Ball position center and other start moving direction.
         ball.reposition()
         ball.change_direction()
+        l_scoreboard.update_score("Left")
+        # ball.speed_up()
     # For left side.
     if ball.xcor() < - 380:
         ball.reposition()
         ball.change_direction()
-    
+        r_scoreboard.update_score("Right")
+        # ball.speed_up()
+        # print("speed up")
+        
+    # if ball.xcor() > 200 or ball.xcor() < -200:
+    #     ball.speed_down()
+    #     # print("speed down")
     # # Detect collisions with left paddle.
     # if ball.xcor() < -380 or ball.distance(l_paddle) < 50:
     #     ball.bounce_x()
