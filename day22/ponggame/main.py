@@ -71,56 +71,10 @@ while game_is_on:
         ball.reposition()
         ball.change_direction()
         l_scoreboard.update_score("Left")
-        # ball.speed_up()
-    # For left side.
+
     if ball.xcor() < - 380:
         ball.reposition()
         ball.change_direction()
         r_scoreboard.update_score("Right")
-        # ball.speed_up()
-        # print("speed up")
-        
-    # if ball.xcor() > 200 or ball.xcor() < -200:
-    #     ball.speed_down()
-    #     # print("speed down")
-    # # Detect collisions with left paddle.
-    # if ball.xcor() < -380 or ball.distance(l_paddle) < 50:
-    #     ball.bounce_x()
-    
-    
-    # Detect collisions with left paddle.
-    
-    
-    
-        # ball.up_right_hit()
-    # #Detect collision with wall (up left).
-    # if ball.ycor() > 300 and ball.xcor() < 0:
-    #     ball.up_left_hit()
-    # #Detect collision with wall (down right).
-    # if  ball.ycor() < -300 and ball.xcor() > 0:
-    #     ball.down_right_hit()
-    # #Detect collision with wall (down left).
-    # if  ball.ycor() < -300 and ball.xcor() < 0:
-        # ball.down_left_hit()
-        
-#     if paddle.ycor() < -200:
-#         pass
-#     elif paddle.ycor() > 200:
-#         pass
-#     else:
-#         paddle.forward(20)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 screen.exitonclick()
