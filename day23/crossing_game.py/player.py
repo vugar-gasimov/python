@@ -9,7 +9,7 @@ class Player(Turtle):
         self.penup()
         self.color("green")
         self.setheading(90)
-        self.goto(START_POSITION)
+        self.reposition()
         self.shape("turtle")
         
     # def move(self):
