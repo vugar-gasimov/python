@@ -18,7 +18,8 @@
 import pandas
 # pip install pandas
 
-data = pandas.read_csv("day25\weather_data.csv")
+# data = pandas.read_csv("day25\weather_data.csv")
+data = pandas.read_csv("day25\Squirrel_Data.csv")
 
 # print(type(data))
 # print(type(data["temp"]))
@@ -69,11 +70,37 @@ data = pandas.read_csv("day25\weather_data.csv")
 # print(monday_fahrenheit)
 
 # Create a data frame from scratch
-data_dict = { 
-    "students": ["Amy", "James", "Angela"],
-    "scores": [76, 56, 65]
+# data_dict = { 
+#     "students": ["Amy", "James", "Angela"],
+#     "scores": [76, 56, 65]
+# }
+
+# data = pandas.DataFrame(data_dict)
+# # print(data)
+# data.to_csv("new_data.scv")
+
+# fur_colors = data.Primary Fur Color
+print(data["Primary Fur Color"])
+gray = data[data["Primary Fur Color"] == "Gray"]
+# gray_count = len(data[data["Primary Fur Color"] == "Gray"])
+# print(gray_count)
+# age = data[data["Age"]]
+# print(age)
+cinnamon = data[data["Primary Fur Color"] == "Cinnamon"]
+black = data[data["Primary Fur Color"] == "Black"]
+# white = data[data["Primary Fur Color"] == "White"]
+# print(black)
+# squirrels = [gray, cinnamon, black]
+# for squirrel in squirrels:
+    
+data_dict = {    
+    # "Index": [], 
+    "Squirrels": ["Gray", "Cinnamon", "Black"],
+    "Count": [len(gray), len(cinnamon), len(black)]
+    
+    # "Primary Fur Color": ["Primary Fur Color", "Primary Fur Color", "Primary Fur Color"]
 }
 
 data = pandas.DataFrame(data_dict)
 # print(data)
-data.to_csv("new_data.scv")
+data.to_csv("day25\\new_squirrel_data.csv", index=True)
