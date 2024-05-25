@@ -16,11 +16,19 @@ guessed_s = []
 while len(guessed_s) < 50:
     answer_state = screen.textinput(title=f"Guess States ({len(guessed_s)}/{50})", prompt="What's another state's name?").title()
 
-    print(answer_state)
-
+    if answer_state == "Exit":
+        not_guessed_s = []
+        for state in s_list:
+            if state not in guessed_s:
+                not_guessed_s.append(state)
+        new_data = pd.DataFrame(not_guessed_s)
+        new_data.to_csv(r"day25\US_States_Game\not_guessed_states.csv")
+        break
     # If answer_state is one of the states in all the states of the 50_states.csv
         # If they got it right:
+        
     if answer_state in s_list:
+        
         guessed_s.append(answer_state)
         new_t = turtle.Turtle()
         new_t.hideturtle()
@@ -33,4 +41,5 @@ while len(guessed_s) < 50:
         # new_t.write(s_data.state.item())
         
         
-screen.exitonclick()
+# with open(fr"day25\US_States_Game\not_guessed_states.csv", mode="w") as n_list:
+#     n_list.write(not_guessed_s)
