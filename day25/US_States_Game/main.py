@@ -17,10 +17,11 @@ while len(guessed_s) < 50:
     answer_state = screen.textinput(title=f"Guess States ({len(guessed_s)}/{50})", prompt="What's another state's name?").title()
 
     if answer_state == "Exit":
-        not_guessed_s = []
-        for state in s_list:
-            if state not in guessed_s:
-                not_guessed_s.append(state)
+        not_guessed_s = [state for state in s_list if state not in guessed_s]
+        # not_guessed_s = []
+        # for state in s_list:
+        #     if state not in guessed_s:
+        #         not_guessed_s.append(state)
         new_data = pd.DataFrame(not_guessed_s)
         new_data.to_csv(r"day25\US_States_Game\not_guessed_states.csv")
         break
