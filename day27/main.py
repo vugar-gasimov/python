@@ -32,7 +32,7 @@ n_button.grid(column=2, row=0)
 # Entry
 
 input = Entry(width=80)
-input.insert(END, string="Some text to begin with.")
+input.insert(END, string="Some text to begin with.", )
 input.grid(column=3, row=2)
 # input.pack()
 # input.get()
