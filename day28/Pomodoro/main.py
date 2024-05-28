@@ -7,14 +7,23 @@ GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
 WORK_MIN = 25
-TEST_MIN = 1
+
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
-
+timer = None
+# one_check_mark = "✔️"
+# two_check_mark = "✔️✔️"
+# three_check_mark = "✔️✔️✔️"
+# four_check_mark = "✔️✔️✔️✔️"
 # ---------------------------- TIMER RESET ------------------------------- # 
 def timer_reset():
+    global reps
+    window.after_cancel(timer)
+    timer_label.config(text="Timer",  fg=GREEN )
     reps = 0
+    canvas.itemconfig(timer_text, text=f"00:00")
+    success_label.config(text="")
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_timer():
@@ -22,7 +31,7 @@ def start_timer():
     global reps 
     reps +=1
     work_sec = WORK_MIN * 60
-    test_sec = TEST_MIN * 60
+    
     short_break_sec = SHORT_BREAK_MIN * 60
     long_break_sec = LONG_BREAK_MIN * 60
     # countdown(5 * 60)
@@ -38,11 +47,18 @@ def start_timer():
     elif reps % 2 == 0:
         countdown(short_break_sec)
         timer_label.config(text="Short Break", fg=GREEN,  font=(FONT_NAME, 50, "bold"))
-    else:
-        # countdown(work_sec)
-        countdown(test_sec)
-        timer_label.config(text="Work", fg=RED, font=(FONT_NAME, 50, "bold"))
         
+    else:
+        countdown(work_sec)
+        timer_label.config(text="Work", fg=RED, font=(FONT_NAME, 50, "bold"))
+    # if reps == 1:
+    #     success_label["text"] = one_check_mark
+    # elif reps == 3:
+    #     success_label["text"] = two_check_mark
+    # elif reps == 5:
+    #     success_label["text"] = three_check_mark
+    # elif reps == 7:
+    #     success_label["text"] = four_check_mark
   
     
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
@@ -57,9 +73,15 @@ def countdown(count):
         
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
-        window.after(1000, countdown, count - 1)
+        global timer
+        timer = window.after(1000, countdown, count - 1)
     else:
         start_timer()
+        marks = ""
+        work_session = math.floor(reps/2)
+        for _ in range(work_session):
+            marks += "✔️"
+        success_label.config(text=marks)
     # if count_min == 0 and count_sec == 0:
     #     global reps 
     #     reps += 1
@@ -118,7 +140,7 @@ reset_btn=Button(text="Reset", highlightthickness=0, command=timer_reset)
 reset_btn.grid(column=2, row=2)
 
 
-success_label = Label(text="✔️", padx=20, pady=20, bg=YELLOW, fg=GREEN, font=(FONT_NAME, 35))
+success_label = Label(text="", bg=YELLOW, fg=GREEN, font=(FONT_NAME, 35))
 success_label.grid(column=1, row=3)
 
 window.mainloop()
