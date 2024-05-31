@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import choice, randint,shuffle
 import pyperclip
-
+import json
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
@@ -51,23 +51,48 @@ def save():
     website = website_entry.get()
     email = email_uname_entry.get()
     password = password_entry.get()
+    new_data = {
+        website: {
+            "email": email,
+            "password": password
+        }
+    }
     
     
     
     if len(website) == 0 or len(email) == 0 or len(password)==0:
         messagebox.showinfo(title="Oops", message="Please don't leave any fields empty!")
     else:
+     
         
-        is_okay = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email}\nPassword: {password}\n Is it okay to save?")
-        
-        if is_okay:
-        
-            with open(r"day29\password_generator\data.txt", mode="a") as f:
-                f.write(f"{website} | {email} | {password} \n")
+        try:
+            with open(r"day30\password_generator0.1\data.json", mode="r") as f:
                 
+                # f.write(f"{website} | {email} | {password} \n")  
+                # Reading old data
+                data = json.load(f)
+                # Updating old data with new data
+                # data.update(new_data)
+            # with open(r"day30\password_generator0.1\data.json", mode="w") as f:
+            #     json.dump(data, f, indent=4)   
+            #     website_entry.delete(0, END)
+            #     password_entry.delete(0, END)
+        except FileNotFoundError:   
+            with open(r"day30\password_generator0.1\data.json", mode="w") as f:
+                # Saving updated data
+                json.dump(new_data, f, indent=4)  
+        else: 
+            # Updating old data with new data
+            data.update(new_data)
+            
+            with open(r"day30\password_generator0.1\data.json", mode="w") as f:
+                json.dump(data, f, indent=4)   
+        finally:    
             website_entry.delete(0, END)
-            # email_uname_entry.delete(0, END)s
             password_entry.delete(0, END)
+                # print(data)
+   
+            
     
 
 
