@@ -9,6 +9,7 @@ GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
 
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 #Password Generator Project
@@ -45,7 +46,9 @@ def generate_password():
     password_entry.insert(0, password)
     # print(f"Your password is: {password}")
     pyperclip.copy(password)
+    
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+
 def save():
     
     website = website_entry.get()
@@ -95,6 +98,28 @@ def save():
             
     
 
+# ---------------------------- Search Existing Password ------------------------------- #
+
+def search_website():
+    website = website_entry.get()
+    try:
+        with open("day30\password_generator0.1\data.json") as f:
+            data = json.load(f)  
+            
+    except FileNotFoundError: 
+        messagebox.showinfo(title="Not Found", message="You haven't added any passwords, before search add passwords.")  
+        
+    else:
+        if website in data:
+            # email = data[website]
+            # 'email': 'vugar@gmail.com', 'password': 'na9XbiUM3Nf)3$9g'
+            email = data[website]["email"]
+            # 'email': 'vugar@gmail.com', 
+            password = data[website]["password"]
+            messagebox.showinfo(title=f"Your {website} password is found.", message=f"Your email is {email} \n Your password is {password}")
+        else:
+            messagebox.showinfo(title="Not Found Error", message=f"In name {website} nothing found")
+            
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -107,29 +132,32 @@ logo_img = PhotoImage(file=r"day29\password_generator\logo.png")
 canvas.create_image(100, 100, image=logo_img)
 canvas.grid(row=0, column=1)
 
-website_label = Label(text="Website: ", bg=GREEN, )
+website_label = Label(text="Website: ", bg=GREEN, height=2 )
 website_label.grid(row=1, column=0, )
 
-website_entry = Entry(width=35, bg=RED )
-website_entry.grid(row=1, column=1, columnspan = 2  )
+website_entry = Entry(width=21, bg=RED )
+website_entry.grid(row=1, column=1,   )
 website_entry.focus()
 
-email_uname_label = Label(text="Email/Username: ", bg=GREEN, )
+search_btn = Button(text="Search", bg=PINK, command=search_website, width=14 )
+search_btn.grid(row=1, column=2, )
+
+email_uname_label = Label(text="Email/Username: ", bg=GREEN, height=2 )
 email_uname_label.grid(row=2, column=0, )
-email_uname_entry = Entry(width=35, bg=RED )
+email_uname_entry = Entry(width=39, bg=RED )
 email_uname_entry.grid(row=2, column=1, columnspan=2)
 email_uname_entry.insert(0, "vugar@gmail.com")
 
-password_label = Label(text="Password: ", bg=GREEN, )
+password_label = Label(text="Password: ", bg=GREEN, height=2 )
 password_label.grid(row=3, column=0, )
 
 password_entry = Entry(width=21, bg=RED )
 password_entry.grid(row=3, column=1, )
 
-generate_password_btn = Button(text="Generate Password", bg=PINK, command=generate_password )
+generate_password_btn = Button(text="Generate Password", bg=PINK, command=generate_password, width=14 )
 generate_password_btn.grid(row=3, column=2, )
 
-add_btn = Button(text="Add", width=36, bg=PINK, command=save )
+add_btn = Button(text="Add", width=36, bg=PINK, command=save, )
 add_btn.grid(row=4, column=1, columnspan=2)
 
 
