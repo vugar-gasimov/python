@@ -7,15 +7,33 @@ import random
 # import json
 BG_COLOR = "#B1DDC6"
 
+current_card = {}
+
+
+
 # ---------------------------- U Input Handling ------------------------------- #
 
 def next_card():
+    
+    global current_card, switch_timer
+   
+    window.after_cancel(switch_timer)
     current_card = random.choice(to_learn)
-    canvas.itemconfig(card_title, text="Polish")
-    canvas.itemconfig(card_word, text=current_card["Polish"])
-  
+    canvas.itemconfig(card_title, text="Polish", fill="black")
+    canvas.itemconfig(card_word, text=current_card["Polish"], fill="black")
+    canvas.itemconfig(canvas_img, image=canvas_img_front)
+    switch_timer = window.after(3000, func=switch_card)
     # word = polish_words.sample(random_index).squeeze()
 
+# ---------------------------- Switching Card ------------------------------- #
+
+def switch_card():
+    
+    canvas.itemconfig(canvas_img, image=canvas_img_back)
+    canvas.itemconfig(card_title, text="English", fill="white")
+    canvas.itemconfig(card_word, text=current_card["English"], fill="white")
+    window.after_cancel(switch_card)
+    
 
 # ---------------------------- Data ------------------------------- #
 
@@ -42,12 +60,14 @@ window.config(padx=50, pady=50, bg=BG_COLOR)
 canvas = Canvas( height=530, width=800, bg=BG_COLOR, highlightthickness=0)
 canvas.grid(row=0, column=0, columnspan=2)
 
+switch_timer = window.after(3000, func=switch_card)
+
 canvas_img_back = PhotoImage(file=r"day31\flash_card_app\images\card_back.png")
 canvas_img_front = PhotoImage(file=r"day31\flash_card_app\images\card_front.png")
 
 wrong_img = PhotoImage(file=r"day31\flash_card_app\images\wrong.png")
 right_img = PhotoImage(file=r"day31\flash_card_app\images\right.png")
-canvas.create_image(400, 265, image=canvas_img_front )
+canvas_img = canvas.create_image(400, 265, image=canvas_img_front )
 card_title = canvas.create_text(400, 150, text="polish", fill="black", font=("Arial", 40, "italic"))
 card_word = canvas.create_text(400, 263, text="word", fill="black", font=("Arial", 40, "bold"))
 # language_label = Label(text="Language ",  height=2,)
@@ -65,6 +85,7 @@ right_btn = Button(window, image=right_img, bg=BG_COLOR, highlightthickness=0, c
 right_btn.grid(row=1, column=1 )
 
 next_card()
+
 
 
 
