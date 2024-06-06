@@ -1,14 +1,26 @@
 from tkinter import *
 from tkinter import messagebox
 import pandas as pd
+
 import random
 # from random import choice, randint, shuffle
 # import pyperclip
 # import json
 BG_COLOR = "#B1DDC6"
-
+PATH_TO_ORIGINAL_DATA = r"day31\flash_card_app\data\100_poslih_top_words.csv"
+PATH_TO_NEW_DATA = r"day31\flash_card_app\data\needed_words.csv"
 current_card = {}
+to_learn ={}
 
+# ---------------------------- Data ------------------------------- #
+try:
+    data = pd.read_csv(PATH_TO_NEW_DATA)
+except FileNotFoundError:
+    # day31\flash_card_app\100_poslih_top_words.csv
+    original_data = pd.read_csv(PATH_TO_ORIGINAL_DATA)
+    to_learn = original_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
 
 
 # ---------------------------- U Input Handling ------------------------------- #
@@ -35,22 +47,23 @@ def switch_card():
     window.after_cancel(switch_card)
     
 
-# ---------------------------- Data ------------------------------- #
-
-try:
-    # with open(r"day31\flash_card_app\100_poslih_top_words.csv", mode="r") as f:            
-    #     data = f.readlines(r"day31\flash_card_app\100_poslih_top_words.csv",)
-    data = pd.read_csv(r"day31\flash_card_app\100_poslih_top_words.csv")
+# ---------------------------- Right Btn Hangle ------------------------------- #
+def right_clicked():
     
-except FileNotFoundError:   
-    messagebox.showinfo(title="File Not Found", message="Oops, something went wrong seems like we can fine the file containing the words.!")
-else: 
-    to_learn = data.to_dict(orient="records")
+    to_learn.remove(current_card)
+    data = pd.DataFrame(to_learn)
+    data.to_csv(PATH_TO_NEW_DATA, index=False)
+    next_card()
+    
+# ---------------------------- Wrong Btn Hangle ------------------------------- #
+def wrong_clicked():
+  
+    next_card()
+    
 
-    # language = data.Polish.to_list()
-    # polish_words = data['Polish']
-    # word = polish_words.sample().squeeze()
-    # polish = data.columns[0]
+
+
+
     
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -77,11 +90,11 @@ card_word = canvas.create_text(400, 263, text="word", fill="black", font=("Arial
 # word_label.grid(, column=0, )
 
 
-wrong_btn = Button(window, image=wrong_img,  bg=BG_COLOR, highlightthickness=0,  command=next_card)
+wrong_btn = Button(window, image=wrong_img,  bg=BG_COLOR, highlightthickness=0,  command=wrong_clicked)
 wrong_btn.grid(row=1, column=0)
 
 
-right_btn = Button(window, image=right_img, bg=BG_COLOR, highlightthickness=0, command=next_card)
+right_btn = Button(window, image=right_img, bg=BG_COLOR, highlightthickness=0, command=right_clicked)
 right_btn.grid(row=1, column=1 )
 
 next_card()
