@@ -60,7 +60,8 @@ if this_week_day == monday:
             connect.sendmail(
                 from_addr=my_email, 
                 to_addrs=my_email, 
-                msg=f"Subject:Monday Motivation Quote. \n\n {random_quote}.")
+                msg=f"Subject:Monday Motivation Quote. \n\n {random_quote}."
+                )
     except (smtplib.SMTPConnectError, smtplib.SMTPAuthenticationError, smtplib.SMTPException) as e:
         print(f"Failed to send email: {e}")
     except TimeoutError:
