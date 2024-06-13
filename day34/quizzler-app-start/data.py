@@ -4,6 +4,7 @@ URL = "https://opentdb.com/api.php"
 
 parameters = {
     "amount": 10,
+    "category": 18, #  changing questions category to computers.
     "type": "boolean"
 }
 
