@@ -183,12 +183,43 @@ df = pd.read_csv(fr"C:\Users\vuqar\OneDrive\Documents\GitHub\python\practice\Pas
 # plt.hist(incomes, 50)
 # plt.show()
 
-incomes = np.random.normal(50.0, 10.0, 10000)
+# incomes = np.random.normal(50.0, 10.0, 10000)
 # incomes_with_outliers = np.append(incomes, [1000, 1200, 1500])
-mean_income = np.mean(incomes)
-median_income = np.median(incomes)
+# mean_income = np.mean(incomes)
+# median_income = np.median(incomes)
 
-print(f"Mean: {mean_income}")
-print(f"Median: {median_income}")
-plt.hist(incomes, 50)
-plt.show()
+# print(f"Mean: {mean_income}")
+# print(f"Median: {median_income}")
+# plt.hist(incomes, 50)
+# plt.show()
+
+# incomes = np.random.normal(100.0, 20.0, 10000)
+# print(incomes.std())
+# print(incomes.var())
+# plt.hist(incomes, 50)
+# plt.show()
+
+# values = np.random.uniform(-10.0, 10.0, 100000)
+# plt.hist(values, 50)
+# plt.show()
+
+# from scipy.stats import norm
+# from scipy.stats import expon
+from scipy.stats import binom
+# x = np.arange(-3, 3, 0.001)
+# plt.plot(x, norm.pdf(x))
+# plt.show()
+# mu = 5.0
+# sigma = 2.0
+# values = np.random.normal(mu, sigma, 10000)
+# plt.hist(values, 50)
+# plt.show()
+
+
+# x = np.arange(0, 10, 0.001)
+# plt.plot(x, expon.pdf(x))
+
+
+n, p = 10, 0.5
+x = np.arange(0, 10, 0.001)
+plt.plot(x, binom.pmf(x, n, p))
