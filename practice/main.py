@@ -175,3 +175,20 @@ df = pd.read_csv(fr"C:\Users\vuqar\OneDrive\Documents\GitHub\python\practice\Pas
 # plt.title('Distribution of Previous Employers (Rows 5-10)')
 # plt.xticks(range(0, 8))
 # plt.show()
+
+
+
+# incomes = np.random.normal(27000, 15000, 10000)
+# # print(np.mean(incomes))
+# plt.hist(incomes, 50)
+# plt.show()
+
+incomes = np.random.normal(50.0, 10.0, 10000)
+# incomes_with_outliers = np.append(incomes, [1000, 1200, 1500])
+mean_income = np.mean(incomes)
+median_income = np.median(incomes)
+
+print(f"Mean: {mean_income}")
+print(f"Median: {median_income}")
+plt.hist(incomes, 50)
+plt.show()
